@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodeJpaDataSourceConfig">
+    <data-sources>
+      <data-source id="9f2f54fb-1d59-4235-8dec-18f7cb00c74f" name="Zodiac" url="jdbc:postgresql://localhost/posrgres" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
