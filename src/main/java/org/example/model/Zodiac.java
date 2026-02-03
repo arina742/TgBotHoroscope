@@ -11,10 +11,11 @@ import java.time.LocalDateTime;
 @Builder
 public class Zodiac {
     private String name;
+    private String url;
     private String description;
     private LocalDateTime date;
 
-    public Zodiac(String name, String description, LocalDateTime date) {
+    public Zodiac(String name, String description, String date) {
         this.name = name;
         this.description = description;
         this.date = date;
