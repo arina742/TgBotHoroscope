@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.service.ParserGoroskop;
 import org.example.service.TgBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -10,5 +11,7 @@ public class Main {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(new TgBot());
         System.out.println("Бот запущен!");
+        ParserGoroskop.parse();
+
     }
 }

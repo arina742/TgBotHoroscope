@@ -30,6 +30,7 @@ public class TgBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
         if(update.hasMessage() && update.getMessage().hasText()){
             long chatId = update.getMessage().getChatId();
             String message = update.getMessage().getText();
@@ -42,7 +43,13 @@ public class TgBot extends TelegramLongPollingBot {
                 sendMessage.setText("Привет! Выбери свой знак зодиака ✨");
                 ReplyKeyboardMarkup keyboardMarkup = createZodiacKeyBoard();
                 sendMessage.setReplyMarkup(keyboardMarkup);
-            } else {
+            } else if(message.contains("Овен") || message.contains("Телец")|| message.contains("Дева") || message.contains("Рак")
+            || message.contains("Лев") || message.contains("Близнецы") || message.contains("Весы") || message.contains("Скорпон")
+                || message.contains("Стрелец") || message.contains("Козерог") || message.contains("Водолей") || message.contains("Рыба")){
+
+                sendMessage.setText(String.valueOf(ParserGoroskop.getZodiacs().get(message.substring(0, message.length()-2))));
+
+            }else {
                 sendMessage.setText("Привет! Выбери свой знак зодиака ✨");
             }
 

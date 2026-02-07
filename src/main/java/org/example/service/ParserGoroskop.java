@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Getter;
 import org.example.model.Zodiac;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,7 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ParserGoroskop {
+public class  ParserGoroskop {
     private final static String URL = "https://obltv.ru/news/goroskop-na-28-yanvarya-rakam-den-sozdaniya-uyuta-vesam-garmonizaciya-otnoshenij-30646";
     private final static String URLOven = "https://horo.mail.ru/prediction/aries/today/";
     private final static String URLTelec = "https://horo.mail.ru/prediction/taurus/today/";
@@ -26,11 +27,13 @@ public class ParserGoroskop {
     private final static String[] URLS = {URLOven, URLTelec, URLTwins, URLLion, URLRak,
                                             URLDeva, URLVesy, URLScorpio, URLStrelec,
                                             URLKozerog, URLVodoley, URLRyba};
+    private static Zodiac zodiac;
 
+    @Getter
     private static HashMap<String, Zodiac> zodiacs = new HashMap<>();
     public static void parse(){
         for(String url : URLS){
-            Zodiac zodiac = getZodiacData(url);
+            getZodiacData(url);
             zodiacs.put(zodiac.getName(), zodiac);
         }
     }
@@ -38,7 +41,6 @@ public class ParserGoroskop {
     public static Zodiac getZodiacData(String url){
         String name;
         String prediction;
-        String date;
 
         try {
             Document doc = Jsoup.connect(url)
@@ -48,12 +50,11 @@ public class ParserGoroskop {
 
             name = extractedName(url);
             prediction = extractPrediction(doc);
-            date =extractDate(doc);
-
+            zodiac = new Zodiac(name, prediction);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new Zodiac(name, prediction, date);
+        return zodiac;
     }
 
     private static String extractedName(String url){
@@ -86,13 +87,6 @@ public class ParserGoroskop {
         return "Прогноз не найден";
     }
 
-    private static String extractDate(Document doc){
-        String title = doc.title();
-        if(title.contains("сегодня") || title.contains("today")){
-            return "Сегодня";
-        }
-        return "Неизвестная дата";
-    }
 
 
 }
