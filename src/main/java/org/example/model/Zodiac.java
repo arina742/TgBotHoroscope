@@ -23,6 +23,6 @@ public class Zodiac {
 
     @Override
     public String toString() {
-        return name+" твоё предсказание на сегодня\n\n"+description;
+        return name+" твоё предсказание на сегодня\uD83D\uDD2E\n\n"+description;
     }
 }

@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class  ParserGoroskop {
-    private final static String URL = "https://obltv.ru/news/goroskop-na-28-yanvarya-rakam-den-sozdaniya-uyuta-vesam-garmonizaciya-otnoshenij-30646";
     private final static String URLOven = "https://horo.mail.ru/prediction/aries/today/";
     private final static String URLTelec = "https://horo.mail.ru/prediction/taurus/today/";
     private final static String URLTwins = "https://horo.mail.ru/prediction/gemini/today/";
